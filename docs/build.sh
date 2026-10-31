@@ -37,6 +37,7 @@ for c in "${CONFS[@]}"; do
 done
 unset DOCS_NAME DOCS_VERSION
 source "$ROOT/docs/docs.conf"
+if [ -f "$ROOT/README.md" ]; then INPUT="$INPUT \"$ROOT/README.md\""; fi
 
 mkdir -p "$OUT"
 doxygen -w html "$OUT/header.html" "$OUT/.footer.html" "$OUT/.style.css" >/dev/null
@@ -50,6 +51,8 @@ mv "$OUT/header.tmp" "$OUT/header.html"
   echo "OUTPUT_DIRECTORY = $OUT"
   echo "INPUT = $INPUT"
   echo "STRIP_FROM_PATH = $ROOT"
+  echo "IMAGE_PATH = $ROOT"
+  if [ -f "$ROOT/docs/Screenshots/Logo.png" ]; then echo "PROJECT_LOGO = $ROOT/docs/Screenshots/Logo.png"; fi
   echo "HTML_HEADER = $OUT/header.html"
   echo "HTML_EXTRA_STYLESHEET = $HERE/theme/doxygen-awesome.css"
   echo "HTML_EXTRA_FILES = $HERE/theme/doxygen-awesome-darkmode-toggle.js $HERE/theme/doxygen-awesome-paragraph-link.js $HERE/theme/doxygen-awesome-interactive-toc.js"
