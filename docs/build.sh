@@ -61,4 +61,5 @@ mv "$OUT/header.tmp" "$OUT/header.html"
 } > "$OUT/Doxyfile"
 
 doxygen "$OUT/Doxyfile"
+if [ -d "$ROOT/docs/Screenshots" ]; then mkdir -p "$OUT/html/docs" && cp -R "$ROOT/docs/Screenshots" "$OUT/html/docs/"; fi
 success "Docs built: $OUT/html/index.html"
